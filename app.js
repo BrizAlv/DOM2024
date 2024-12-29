@@ -69,3 +69,26 @@ function updateLocalStorage(){
   localStorage.setItem("tasks", JSON.stringify(tasks));
 
 }
+function removeFomLocalStorage(taskContent){
+  const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+  const updateTasks = tasks.filter((task)=>task !== taskContent);
+
+  localStorage.setItem("tasks", JSON.stringify(updateTasks));
+}
+const currentTheme = localStorage.getItem("theme");
+themeToggleBottom = document.getElementById("toggle-theme-btn");
+
+themeToggleBottom.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+
+  const theme = document.body.classList.contains("dark-theme") 
+  ? "dark" 
+  : "light";
+
+  localStorage.setItem("theme", theme);
+});
+
+if (currentTheme=== "dark"){
+  document.body.classList.add("dark-theme");
+}
+
